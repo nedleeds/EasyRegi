@@ -71,9 +71,10 @@ $cd ~ && git clone https://github.com/nedleeds/EasyRegi.git && cd ./EasyRegi
 ~/EasyRegi$pip install -r requirements.txt
 ```
 
-> [INFO] Windows 경우, pip install win32 를 통해 outlook 관련 라이브러리를 추가로 설치 하셔야합니다.
+> [!WARNING] Windows 경우, 하기 명령어를 통해 outlook 관련 라이브러리를 추가로 설치 하셔야합니다.
+> ```bash `pip install pywin32` ```
 
-3. 설치된 소스코드 동작 확인
+1. 설치된 소스코드 동작 확인
 
 ```bash
 ~/EasyRegi$python main.py
