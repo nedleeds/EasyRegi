@@ -19,7 +19,7 @@ class DataManager:
         self._img_path = self.resource_path(
             os.path.join("ui", "img", "gui_screen_capture.png")
         )
-        self._platform = ""
+        self._platform = self.check_platform()
 
     def check_platform(self):
         self._platform = platform.system()
