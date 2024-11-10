@@ -43,9 +43,6 @@ class Bot:
 
             service = Service(excutable_path=ChromeDriverManager().install())
             self._driver = webdriver.Chrome(service=service)
-            # 이제 Selenium 스크립트를 작성하고 사용할 수 있습니다.
-            self._driver.get("https://www.google.com")
-            self._driver.maximize_window()
 
             self.check_network()
             if self._network == "in":
@@ -58,6 +55,8 @@ class Bot:
                 self._driver.get(
                     "https://ex-hihr.hyundai-robotics.com/EHR/websquare/websquare.html?w2xPath=/UI/MAIN/ZCOM_J0000_05_M.xml"
                 )
+
+            self._driver.maximize_window()
             self._chrome_opend = True
             return True
         else:
@@ -349,16 +348,17 @@ class Bot:
                         press_time_diff(displayed_start_hour, target_hour)
                         print(f"{element_id} 설정 완료: {time_to_select}")
                     elif element_id == "end_hour":
-                        self.press_keyboard("down", 23, 0.0)
-                        self.press_keyboard("down", time_to_select)
+                        self.press_keyboard("down", 24, 0.0)
+                        self.press_keyboard("up", time_to_select)
                     elif element_id == "end_min":
                         self.press_keyboard("up", 6, 0.0)
                         self.press_keyboard("down", time_to_select)
                     else:
                         # Tab 키를 눌러 포커스를 이동
                         self.press_keyboard("down", time_to_select)
-                        self.press_keyboard("enter")
                         print(f"{element_id} 설정 완료: {time_to_select}")
+                    self.press_keyboard("enter")
+
                 else:
                     print(f"현재 선택된 시간은 이미 {time_to_select}입니다.")
 
@@ -385,7 +385,7 @@ class Bot:
             self.press_keyboard("tab")
 
             set_time("start_min", index_start_minute + 1)
-            set_time("end_hour", time_end_hour + 1)
+            set_time("end_hour", 23 - time_end_hour)
             set_time("end_min", index_end_minute + 1)
             return True
 
@@ -400,7 +400,7 @@ class Bot:
                 EC.frame_to_be_available_and_switch_to_it((By.ID, "wframe4"))
             )
 
-            # iframe 안의 <input> 요소를 찾고 클릭
+            # iframe
             element = WebDriverWait(self._driver, 10).until(
                 EC.element_to_be_clickable((By.ID, "cal_ZZ_WORK_DT_input"))
             )
