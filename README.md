@@ -125,8 +125,8 @@ ui
 ```bash
 ~/EasyRegi$pyinstaller --onefile \
     --add-data "ui;ui" \
-    --log-level "DEBUG" \
     --windowed \
+    --log-level "DEBUG" \
     --name "HRBot" \
     --icon "ui/img/logo.ico" \
     main.py
