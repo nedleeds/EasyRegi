@@ -113,6 +113,7 @@ ui
 
 > 실행파일 위치
 
+```
 EasyRegi
 │
 └── pyinstaller
@@ -120,3 +121,4 @@ EasyRegi
       └── dist
            │
            └── HRBot.exe <-- mac/linux 는 바이너리 파일이 생성 됨
+```
