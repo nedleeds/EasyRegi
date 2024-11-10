@@ -18,7 +18,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 import os
 import time
-import win32com.client as win32
 
 
 class Bot:
@@ -485,56 +484,59 @@ class Bot:
                 return False
 
     def send_mail(self):
-        name = self._data_manager.get_default_data_with_key("name")
-        team = self._data_manager.get_default_data_with_key("team")
-        position = self._data_manager.get_default_data_with_key("position")
+        if self._data_manager._platform == "Windows":
+            import win32com.client as win32
 
-        # Outlook Application 객체 생성
-        outlook = win32.Dispatch("Outlook.Application")
+            name = self._data_manager.get_default_data_with_key("name")
+            team = self._data_manager.get_default_data_with_key("team")
+            position = self._data_manager.get_default_data_with_key("position")
 
-        # Mail Item 생성
-        mail_item = outlook.createItem(0)  # 0은 메일 아이템을 의미
+            # Outlook Application 객체 생성
+            outlook = win32.Dispatch("Outlook.Application")
 
-        # Mail 내용 생성
-        mail_item.Subject = "비근 등록 요청의 건"
+            # Mail Item 생성
+            mail_item = outlook.createItem(0)  # 0은 메일 아이템을 의미
 
-        # 첨부 파일 절대 경로 지정
-        attachment_path = self._data_manager.get_img_path()
+            # Mail 내용 생성
+            mail_item.Subject = "비근 등록 요청의 건"
 
-        # 첨부 파일이 있는지 확인 후 추가
-        if os.path.exists(attachment_path):
-            attachment = mail_item.Attachments.Add(attachment_path)
+            # 첨부 파일 절대 경로 지정
+            attachment_path = self._data_manager.get_img_path()
 
-            # Content-ID 속성 설정: 간단한 문자열 "image1"로 Content-ID 값을 지정
-            attachment.PropertyAccessor.SetProperty(
-                "http://schemas.microsoft.com/mapi/proptag/0x3712001F", "image1"
-            )
-        else:
-            print(f"파일을 찾을 수 없습니다: {attachment_path}")
+            # 첨부 파일이 있는지 확인 후 추가
+            if os.path.exists(attachment_path):
+                attachment = mail_item.Attachments.Add(attachment_path)
 
-        # HTML 형식으로 메시지 작성, fotmat 통일
-        html_body = f"""
-        <html>
-            <body>
-                <p style="font-family: 'HD현대체  Light'; font-size: 16px">
-                    안녕하십니까. {team} {name} {position}입니다. <br>
-                    연일되는 격무에 노고 많으십니다. <br><br>
-                    하기와 같이 비근등록 요청드립니다. <br>
-                </p>
-                <img src= "cid:image1" />
-                <p style="font-family: 'HD현대체  Light'; font-size: 16px">
+                # Content-ID 속성 설정: 간단한 문자열 "image1"로 Content-ID 값을 지정
+                attachment.PropertyAccessor.SetProperty(
+                    "http://schemas.microsoft.com/mapi/proptag/0x3712001F", "image1"
+                )
+            else:
+                print(f"파일을 찾을 수 없습니다: {attachment_path}")
 
-                    감사합니다. <br>
-                    {name} 드림.
-                <\p>
-            </body>
-        </html>
-        """
+            # HTML 형식으로 메시지 작성, fotmat 통일
+            html_body = f"""
+            <html>
+                <body>
+                    <p style="font-family: 'HD현대체  Light'; font-size: 16px">
+                        안녕하십니까. {team} {name} {position}입니다. <br>
+                        연일되는 격무에 노고 많으십니다. <br><br>
+                        하기와 같이 비근등록 요청드립니다. <br>
+                    </p>
+                    <img src= "cid:image1" />
+                    <p style="font-family: 'HD현대체  Light'; font-size: 16px">
 
-        mail_item.HTMLBody = html_body
+                        감사합니다. <br>
+                        {name} 드림.
+                    <\p>
+                </body>
+            </html>
+            """
 
-        # Mail 창 열기
-        mail_item.Display()
+            mail_item.HTMLBody = html_body
 
-        # 캡쳐 사진 삭제
-        self._data_manager.delete_img()
+            # Mail 창 열기
+            mail_item.Display()
+
+            # 캡쳐 사진 삭제
+            self._data_manager.delete_img()

@@ -18,7 +18,8 @@ if __name__ == "__main__":
 
     # 신호 연결
     window.on_register_clicked.connect(bot.register)
-    window.on_send_mail_clicked.connect(bot.send_mail)
+    if data_manager._platform == "Windows":
+        window.on_send_mail_clicked.connect(bot.send_mail)
     window.show()
 
     sys.exit(app.exec_())

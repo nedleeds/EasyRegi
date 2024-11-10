@@ -2,6 +2,7 @@
 import os
 import sys
 import json
+import platform
 from typing import Dict, Optional
 
 
@@ -18,6 +19,18 @@ class DataManager:
         self._img_path = self.resource_path(
             os.path.join("ui", "img", "gui_screen_capture.png")
         )
+        self._platform = ""
+
+    def check_platform(self):
+        self._platform = platform.system()
+        if self._platform == "Windows":
+            print("This is Windows.")
+        elif self._platform == "Darwin":
+            print("This is macOS.")
+        elif self._platform == "Linux":
+            print("This is Linux")
+        else:
+            print(f"This os is {self._platform}")
 
     def resource_path(self, relative_path):
         """PyInstaller 빌드 후 파일 경로 설정"""

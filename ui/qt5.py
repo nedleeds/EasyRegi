@@ -255,6 +255,7 @@ class Ui_MainWindow(object):
         }
         """)
 
+        self.set_pushButton_2_enable()
         self.pushButton.clicked.connect(check_date_for_regist)
 
     def setup_comboboxes(self):
@@ -300,7 +301,7 @@ class Ui_MainWindow(object):
             today = QtCore.QDate.currentDate()
             self.calendarWidget.setSelectedDate(today)
             self.update_date_label(today)
-            self.pushButton_2.setEnabled(True)  # pushButton_2 활성화
+            self.set_pushButton_2_enable(True)
             self.pushButton.setEnabled(True)  # pushButton 활성화
 
         def adjust_month_dropdown():
@@ -528,6 +529,13 @@ class Ui_MainWindow(object):
         reason = self._data_manager.get_default_data()["reason"]
         self.input_reason.setText(reason)
 
+    def set_pushButton_2_enable(self, state: bool = True):
+        p = self._data_manager._platform
+        if p == "Windows":
+            self.pushButton_2.setEnabled(state)
+        else:
+            self.pushButton_2.setEnabled(False)
+
     def check_time_for_regist(self) -> bool:
         """근태 생성시간 확인
         자정 ~ 새벽 2시 30분 근태 생성 불가"""
@@ -545,7 +553,7 @@ class Ui_MainWindow(object):
                 "지금은 근태 생성 시간이 아닙니다. '<span style=\"background-color: #660000; color: white; padding: 2px;\">매일 00:00~2:30</span>' 클릭."
             )
             self._data_manager._register_time = False
-            self.pushButton_2.setEnabled(True)  # pushButton_2 활성화
+            self.set_pushButton_2_enable(True)
             self.pushButton.setEnabled(False)  # pushButton 활성화
             return False
 
@@ -557,14 +565,14 @@ class Ui_MainWindow(object):
         if self.check_time_for_regist():
             if date == self.today or date == self.previous_day:
                 self.update_date_label(date)
-                self.pushButton_2.setEnabled(True)  # pushButton_2 활성화
+                self.set_pushButton_2_enable(True)
                 self.pushButton.setEnabled(True)  # pushButton 활성화
             else:
                 # 비활성화된 날짜를 클릭한 경우 메시지 표시 및 선택 취소
                 self.label_date.setText(
                     "비근등록 생성일이 아닙니다. '<span style=\"background-color: #007ACC; color: white; padding: 2px;\">비근 등록 메일 생성</span>' 클릭."
                 )
-                self.pushButton_2.setEnabled(True)  # pushButton_2 활성화
+                self.set_pushButton_2_enable(True)
                 self.pushButton.setEnabled(False)  # pushButton 활성화
 
     def update_date_label(self, date: QDate):
