@@ -66,7 +66,11 @@ $cd ~ && git clone https://github.com/nedleeds/EasyRegi.git && cd ./EasyRegi
 ```bash
 ~/EasyRegi$cp -r bot.py data.py main.py ui ./pyinstaller && cd ./pyinstaller
 
-# 복사가 정상적으로 됐는지 확인
+```
+
+> 복사가 정상적으로 됐는지 확인
+
+```bash
 ~/EasyRegi/pyinstaller$ls
 bot.py
 data.py
