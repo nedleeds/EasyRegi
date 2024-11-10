@@ -540,3 +540,5 @@ class Bot:
 
             # 캡쳐 사진 삭제
             self._data_manager.delete_img()
+        else:
+            pass
