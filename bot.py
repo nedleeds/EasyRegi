@@ -38,10 +38,11 @@ class Bot:
     def start_chrome(self):
         if not self._chrome_opend:
             chrome_options = Options()
-            # chrome_options.add_argument("--headless=new")  # 새로운 헤드리스 모드
+            chrome_options.add_argument("--start-maximized")  # 크롬 창을 최대화해서 엽니다.
+            # options.add_argument("--headless=new")  # 새로운 헤드리스 모드
 
-            service = Service(excutable_path=ChromeDriverManager().install())
-            self._driver = webdriver.Chrome(service=service)
+            # Chrome 드라이버 서비스 생성
+            self._driver = webdriver.Chrome()
 
             self.check_network()
             if self._network == "in":
@@ -55,7 +56,6 @@ class Bot:
                     "https://ex-hihr.hyundai-robotics.com/EHR/websquare/websquare.html?w2xPath=/UI/MAIN/ZCOM_J0000_05_M.xml"
                 )
 
-            self._driver.maximize_window()
             self._chrome_opend = True
             return True
         else:
