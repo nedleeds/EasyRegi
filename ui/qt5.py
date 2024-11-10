@@ -255,7 +255,7 @@ class Ui_MainWindow(object):
         }
         """)
 
-        self.set_pushButton_2_enable()
+        self.set_pushButton_2_enable(True)
         self.pushButton.clicked.connect(check_date_for_regist)
 
     def setup_comboboxes(self):
