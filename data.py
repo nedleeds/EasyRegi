@@ -21,16 +21,17 @@ class DataManager:
         )
         self._platform = self.check_platform()
 
-    def check_platform(self):
-        self._platform = platform.system()
-        if self._platform == "Windows":
+    def check_platform(self) -> str:
+        p = platform.system()
+        if p == "Windows":
             print("This is Windows.")
-        elif self._platform == "Darwin":
+        elif p == "Darwin":
             print("This is macOS.")
-        elif self._platform == "Linux":
+        elif p == "Linux":
             print("This is Linux")
         else:
             print(f"This os is {self._platform}")
+        return p
 
     def resource_path(self, relative_path):
         """PyInstaller 빌드 후 파일 경로 설정"""

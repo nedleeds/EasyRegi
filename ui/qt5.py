@@ -530,9 +530,8 @@ class Ui_MainWindow(object):
         self.input_reason.setText(reason)
 
     def set_pushButton_2_enable(self, state: bool = True):
-        p = self._data_manager._platform
-        if p == "Windows":
-            self.pushButton_2.setEnabled(state)
+        if self._data_manager._platform == "Windows":
+            self.pushButton_2.setEnabled(True)
         else:
             self.pushButton_2.setEnabled(False)
 
