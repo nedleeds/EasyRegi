@@ -11,7 +11,35 @@
 
 1. 해당 매크로 프로그램은 크롬을 활용합니다. 최신 버전의 크롬을 다운받아주십시오.
 2. 기존 크롬드라이버가 최신 버전이 아닌 경우, 업데이트를 해주시기 바랍니다.
-3. 비근 등록 메일 보내기 기능은 Windows 에서만 활성화가 됩니다.
+3. 비근 등록 `메일 보내기` 기능은 `Windows 에서만 활성화`가 됩니다.  
+   → `비근등록` 기능은 mac, linux 사용 가능.
+
+## 사용 메뉴얼
+
+1. `비근등록` 기능  
+   | 클릭 가능한 경우 | 클릭 시 결과 |
+   | :--- | :--- |
+   |<img width="387" alt="image" src="https://github.com/user-attachments/assets/b315aaf3-0ac8-431c-97c4-b595f4ac9f1b">|<img width="460" alt="image" src="https://github.com/user-attachments/assets/f4bbcc3a-e526-457e-bc3a-b3490d36e64e">|
+   |HiHR에서 비근 등록이 가능한 날은, 근무 당일 전일.|해당 기능이 정상적으로 동작하는 경우, 비근 등록이 자동으로 완료되어집니다.|
+   |통합인증 비밀번호는 서버로 절대 전송되지 않습니다. </br> 본인의 폴더에 저장됩니다. 안심하고 사용하셔도 됩니다. | 중간 비근 등록이 불가한 경우, 크롬에서 팝업을 띄운채로 멈춥니다.|
+
+
+   | 클릭 불가능한 경우 |
+   | :--- |
+   |<img height="280" alt="image" src=https://github.com/user-attachments/assets/78ce9f75-fd2b-4aa9-bf43-215b6d7e06f3><img height="281" alt="image" src="https://github.com/user-attachments/assets/a6c72666-f22e-4b62-ac0b-b057ef0a3ba5">|
+   |당일, 전일이 아니거나 근태 생성시간(00:00~02:30)인 경우 비근등록 버튼 비활성화. 윈도우 환경에서는 메일 보내기를 이용. |  
+
+2. `비근 등록 메일 생성` 기능  
+   | 클릭 가능한 경우 | 클릭 시 결과|
+   | :--- |:--- |
+   |<img height="280" alt="image" src="https://github.com/user-attachments/assets/08a9ba3f-7623-4d7c-bd72-de10a739e0b5">|<img height="300" alt="image" src="https://github.com/user-attachments/assets/d447b114-4672-4767-ba0a-b56b0b77232a">|
+   |윈도우 환경에서 날짜에 상관없이 동작.|버튼 클릭 시, 등록정보를 캡쳐하여 자동으로 아웃룩 메일 양식 작성.|
+
+   | 클릭 불가능한 경우 |
+   | :--- |
+   |<img width="380" alt="image" src="https://github.com/user-attachments/assets/1998e92c-bdb8-49a0-bd07-7c68a00f19ea">|
+   | Mac 또는 Linux 인 경우 |
+
 
 ## 설치 메뉴얼
 
