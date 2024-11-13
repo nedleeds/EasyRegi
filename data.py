@@ -153,7 +153,7 @@ class DataManager:
         except json.JSONDecodeError:
             print("Error: JSON 파일을 해석할 수 없습니다.")
 
-    def save_default_json(self, file_path="default.json") -> None:
+    def save_default_json(self, file_path)-> None:
         try:
             with open(file_path, "w", encoding="utf-8") as file:
                 json.dump(self._data, file, ensure_ascii=False, indent=4)

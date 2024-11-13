@@ -740,7 +740,7 @@ class Ui_MainWindow(object):
         self._data_manager.set_total_data(
             data=None, key="DEFAULT", values=displayed_data
         )
-        self._data_manager.save_default_json()
+        self._data_manager.save_default_json(self._data_manager._default_json_path)
         return
 
     def on_send_mail_click(self):
@@ -748,7 +748,7 @@ class Ui_MainWindow(object):
         self._data_manager.set_total_data(
             data=None, key="DEFAULT", values=displayed_data
         )
-        self._data_manager.save_default_json()
+        self._data_manager.save_default_json(self._data_manager._default_json_path)
 
         # gui 캡처
         pixmap = self.grab()
