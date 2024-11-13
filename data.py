@@ -20,6 +20,8 @@ class DataManager:
             os.path.join("ui", "img", "gui_screen_capture.png")
         )
         self._platform = self.check_platform()
+        self._chrome_path = self.get_chrome_path()
+        self._chromedriver_path = self.get_chromedriver_path()
 
     def check_platform(self) -> str:
         p = platform.system()
