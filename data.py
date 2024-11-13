@@ -33,6 +33,36 @@ class DataManager:
             print(f"This os is {self._platform}")
         return p
 
+    def get_chromedriver_path(self) -> str:
+        p = self.check_platform()
+        if p == "Windows":
+            return self.resource_path(
+                os.path.join("chrome", "chromedriver-win64", "chromedriver.exe")
+            )
+        elif p == "Darwin":
+            return self.resource_path(
+                os.path.join("chrome", "chromedriver-mac-arm64", "chromedriver")
+            )
+        elif p == "Linux":
+            return self.resource_path(
+                os.path.join("chrome", "chromedriver-linux64", "chromedriver")
+            )
+        else:
+            raise ("Current OS is not supported.")
+
+    def get_chrome_path(self) -> str:
+        p = self.check_platform()
+        if p == "Windows":
+            return self.resource_path(
+                os.path.join("chrome", "chrome-win64", "chrome.exe")
+            )
+        elif p == "Darwin":
+            return "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+        elif p == "Linux":
+            return "/usr/bin/google-chrome"
+        else:
+            raise ("Current OS is not supported.")
+
     def resource_path(self, relative_path):
         """PyInstaller 빌드 후 파일 경로 설정"""
         base_path = getattr(sys, "_MEIPASS", os.path.abspath("."))

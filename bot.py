@@ -18,6 +18,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 import os
 import time
+import chromedriver_autoinstaller
 
 
 class Bot:
@@ -34,15 +35,21 @@ class Bot:
             self._driver = None
             self._data_manager = DataManager.instance()
             self._initialized = True
+            chromedriver_autoinstaller.install()
 
     def start_chrome(self):
         if not self._chrome_opend:
             chrome_options = Options()
-            chrome_options.add_argument("--start-maximized")  # 크롬 창을 최대화해서 엽니다.
+            chrome_options.add_argument(
+                "--start-maximized"
+            )  # 크롬 창을 최대화해서 엽니다.
             # options.add_argument("--headless=new")  # 새로운 헤드리스 모드
 
             # Chrome 드라이버 서비스 생성
-            self._driver = webdriver.Chrome()
+            chrome_service = Service()
+            self._driver = webdriver.Chrome(
+                service=chrome_service, options=chrome_options
+            )
 
             self.check_network()
             if self._network == "in":
