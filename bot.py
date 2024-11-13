@@ -43,11 +43,13 @@ class Bot:
             chrome_options.add_argument(
                 "--start-maximized"
             )  # 크롬 창을 최대화해서 엽니다.
-            chrome_options.binary_location(self._data_manager._chrome_path)
+            chrome_options.binary_location = self._data_manager._chrome_path
             # options.add_argument("--headless=new")  # 새로운 헤드리스 모드
 
             # Chrome 드라이버 서비스 생성
-            chrome_service = Service(self._data_manager._chromedriver_path)
+            chrome_service = Service(
+                executable_path=self._data_manager._chromedriver_path
+            )
             self._driver = webdriver.Chrome(
                 service=chrome_service, options=chrome_options
             )
